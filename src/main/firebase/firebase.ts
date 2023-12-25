@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeAuth } from 'firebase/auth';
+import { electronLocalPersistence } from './_internal/ElectronLocalPersistence';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyACuGbIJyGD6g-45j0PStbGsmvgHcotSzk',
@@ -13,4 +14,6 @@ const firebaseConfig = {
 };
 
 export const fbApp = initializeApp(firebaseConfig);
-export const fbAuth = getAuth(fbApp);
+export const fbAuth = initializeAuth(fbApp, {
+  persistence: electronLocalPersistence,
+});
